@@ -1,23 +1,21 @@
-var expect  = require('chai').expect;
-var request = require('request');
-
-it('Main page content', function(done) {
-    request('http://localhost:8080' , function(error, response, body) {
-        expect(body).to.equal('Hello World');
-        done();
-    });
-});
-
-it('Main page status', function(done) {
-    request('http://localhost:8080' , function(error, response, body) {
-        expect(response.statusCode).to.equal(200);
-        done();
-    });
-});
-
-it('About page content', function(done) {
-    request('http://localhost:8080/about' , function(error, response, body) {
-        expect(response.statusCode).to.equal(404);
-        done();
+import { describe, it } from "mocha"; 
+import { expect } from "chai"; 
+ 
+const servidor = 'http://localhost:3000/' 
+ 
+describe('Test de app.js',() => { 
+ 
+    it('Servidor funcionando', (done) => { 
+        fetch(servidor) 
+ 
+            .then(res => { 
+                expect(res.status).to.equal(200) 
+                done() 
+            }) 
+ 
+            .catch(err => { 
+                console.log(err) 
+                done(err) 
+            }) 
     });
 });
